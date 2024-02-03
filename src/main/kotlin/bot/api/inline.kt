@@ -35,7 +35,7 @@ fun createBuyCategoryMessage(chatId: String, callback: String) =
                 "$callback|firstyear|buy" to "Первый курс",
             ),
             listOf(
-                "$callback|cook|buy" to "повар",
+                "$callback|cook|buy" to "Повар",
                 "$callback|hz|buy" to "Потом ещё добавим",
                 ),
             listOf(
@@ -66,7 +66,7 @@ fun createSellCategoryMessage(chatId: String, callback: String) =
                 "$callback|firstyear|sell" to "Первый курс",
             ),
             listOf(
-                "$callback|cook|sell" to "Повак",
+                "$callback|cook|sell" to "Повар",
                 "$callback|hz|sell" to "Потом ещё добавим",
             ),
             listOf(

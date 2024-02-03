@@ -1,15 +1,17 @@
-package bot.api.handler
+package bot.api.handler.proffesion.programmer
 
 import bot.api.*
+import bot.api.handler.CallbackHandler
 import bot.enums.HandlerName
 import org.springframework.stereotype.Component
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery
 import org.telegram.telegrambots.meta.bots.AbsSender
+import service.WorksServiceImpl
 
 @Component
-class SelectCategoryHandler : CallbackHandler {
-    override val name: HandlerName = HandlerName.SELECT_CATEGORY
+class StartPayProgrammerHandler : CallbackHandler {
+    override val name: HandlerName = HandlerName.BUY_PROGRAMMER_START_PAY
 
     override fun processCallbackData(
         absSender: AbsSender,
@@ -18,13 +20,7 @@ class SelectCategoryHandler : CallbackHandler {
     ) {
 
         val chatId = callbackQuery.message.chatId.toString()
-        val buyOrSell = arguments.last()
         if (arguments.first() == "back") {
-            val callback = HandlerName.SELECT_BUY_OR_SELL.text
-            absSender.execute(
-                createSelectCategoryMessage(chatId, callback)
-            )
-        } else if (buyOrSell == "buy") {
             absSender.execute(
                 createMessageWithInlineButtons(
                     chatId,
@@ -36,21 +32,9 @@ class SelectCategoryHandler : CallbackHandler {
             absSender.execute(
                 createMessage(
                     chatId,
-                    "Тут надо придумать как user продаёт работу"
+                    "Начать диалог по покупке ${arguments.last().split("_")} работы c id ${arguments.get(1)}"
                 )
             )
-//            val callback = ""
-//            absSender.execute(
-//                createMessageWithInlineButtons(
-//                    chatId,
-//                    getTextMessageForSell(arguments.first()),
-//                    listOf(
-//                        listOf(
-//                            "$callback|" to "Да", "$callback|back" to "Назад"
-//                        )
-//                    )
-//                )
-//            )
         }
 
         absSender.execute(
@@ -62,5 +46,4 @@ class SelectCategoryHandler : CallbackHandler {
             )
         )
     }
-
 }

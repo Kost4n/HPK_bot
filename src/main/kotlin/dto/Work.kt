@@ -1,6 +1,6 @@
 package dto
 
-data class TestDto(
+data class Work (
     val id: Long,
     val name: String,
     val summary: String

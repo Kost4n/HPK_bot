@@ -1,26 +1,26 @@
 package service
 
-import dto.TestDto
+import dto.Work
 
 class BaseData {
-    fun getListProgrammerWorks(): List<TestDto> {
+    fun getListProgrammerWorks(): List<Work> {
         return listOf(
-            TestDto(
+            Work(
                 0,
                 "Пр1 вп31",
                 "Краткое содержание Пр1 вп31"
             ),
-            TestDto(
+            Work(
                 1,
                 "Пр1 тд31",
                 "Краткое содержание Пр1 тд31"
             ),
-            TestDto(
+            Work(
                 2,
                 "Пр1 про31",
                 "Краткое содержание Пр1 про31"
             ),
-            TestDto(
+            Work(
                 3,
                 "Пр1 прс31",
                 "Краткое содержание Пр1 прс31"

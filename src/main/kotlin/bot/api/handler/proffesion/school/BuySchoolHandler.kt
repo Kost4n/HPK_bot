@@ -1,6 +1,8 @@
-package bot.api.handler.proffesion.programmer
+package bot.api.handler.proffesion.school
 
-import bot.api.*
+import bot.api.createBuyCategoryMessage
+import bot.api.createMessageWithInlineButtons
+import bot.api.getInlineKeyboard
 import bot.api.handler.CallbackHandler
 import bot.enums.HandlerName
 import org.springframework.stereotype.Component
@@ -10,8 +12,8 @@ import org.telegram.telegrambots.meta.bots.AbsSender
 import service.WorksServiceImpl
 
 @Component
-class BuyProgrammerHandler : CallbackHandler {
-    override val name: HandlerName = HandlerName.PROGRAMMER_WORKS
+class BuySchoolHandler : CallbackHandler {
+    override val name: HandlerName = HandlerName.SCHOOL_WORKS
 
     override fun processCallbackData(
         absSender: AbsSender,
@@ -26,8 +28,8 @@ class BuyProgrammerHandler : CallbackHandler {
                 createBuyCategoryMessage(chatId, callback)
             )
         } else {
-            val data = WorksServiceImpl().getProgrammerNameWorks()
-            val callback = HandlerName.BUY_PROGRAMMER_START_PAY.text
+            val data = WorksServiceImpl().getSchoolNameWorks()
+            val callback = HandlerName.BUY_SCHOOL_START_PAY.text
             for (record in data) {
                 if (record.id.toString() == arguments.first()) {
                     absSender.execute(
@@ -37,7 +39,7 @@ class BuyProgrammerHandler : CallbackHandler {
                             listOf(
                                 listOf(
                                     "$callback|back" to "Назад",
-                                    "$callback|buy_this_work|${record.id}|${name.text}" to "Купить"
+                                    "$callback|buy_this_work|${record.id}|$name" to "Купить"
                                 )
                             )
                         )
